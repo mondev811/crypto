@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, StyleSheet, ScrollView} from 'react-native';
+import {Pressable, StyleSheet, ScrollView, Text} from 'react-native';
 import axios from 'axios';
 import {Dropdown} from './';
 
@@ -80,7 +80,12 @@ export const Form = ({onSubmit}) => {
         valueField="name"
         onSelect={setCrypto}
       />
-      <Pressable onPress={() => onSubmit(crypto)}>
+      <Pressable
+        onPress={() =>
+          onSubmit(c => {
+            return cryptocurrencies.find(c => c.name === crypto);
+          })
+        }>
         <Text style={styles.btn}>Get Quote</Text>
       </Pressable>
     </ScrollView>
@@ -91,11 +96,12 @@ const styles = StyleSheet.create({
   btn: {
     fontFamily: 'Lato-Black',
     backgroundColor: '#5e49e2',
-    paddingBottom: 10,
+    paddingVertical: 15,
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: 20,
     color: '#FFF',
-    marginBottom: 30,
+    marginVertical: 30,
+    borderRadius: 10,
   },
 });

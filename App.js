@@ -14,8 +14,8 @@ const App = () => {
       />
       <View style={styles.content}>
         <Form onSubmit={setCryptoData} />
-        {cryptoData && <Quote cryptoData={cryptoData} />}
       </View>
+      {cryptoData && <Quote cryptoData={cryptoData} />}
     </View>
   );
 };

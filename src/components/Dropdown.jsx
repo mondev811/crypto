@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 export const Dropdown = ({
@@ -20,11 +21,13 @@ export const Dropdown = ({
         }}>
         <Picker.Item label="--Select--" value="" />
         {pickerList?.map(item => {
-          <Picker.Item
-            key={item[keyField]}
-            label={item[labelField]}
-            value={item[valueField]}
-          />;
+          return (
+            <Picker.Item
+              key={item[keyField]}
+              label={item[labelField]}
+              value={item[valueField]}
+            />
+          );
         })}
       </Picker>
     </View>

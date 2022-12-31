@@ -1,31 +1,52 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export const Quote = ({
-  price,
-  high_day,
-  low_day,
-  variance_last_24h,
-  last_update,
-}) => {
+const DisplayRow = ({label, content}) => (
+  <View style={styles.row}>
+    <Text style={styles.label}>{label}: </Text>
+    <Text style={styles.content}>{content}</Text>
+  </View>
+);
+
+export const Quote = props => {
+  const {price, high_day, low_day, variance_last_24h, last_update} =
+    props.cryptoData;
   return (
-    <View>
-      <Text style={styles.text}>{price}</Text>
-      <Text style={styles.text}>{high_day}</Text>
-      <Text style={styles.text}>{low_day}</Text>
-      <Text style={styles.text}>{variance_last_24h}</Text>
-      <Text style={styles.text}>{last_update}</Text>
+    <View style={styles.container}>
+      <Text style={styles.priceText}>{price}</Text>
+      <DisplayRow label="Highest price of day" content={high_day} />
+      <DisplayRow label="Lowest price of the day" content={low_day} />
+      <DisplayRow label="Variance last 24 hours" content={variance_last_24h} />
+      <DisplayRow label="Last update" content={last_update} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontFamily: 'Lato-Black',
+  container: {
     backgroundColor: '#5e49e2',
-    paddingBottom: 10,
-    fontSize: 20,
+    paddingBottom: 30,
+    paddingHorizontal: 20,
+  },
+  priceText: {
+    fontSize: 40,
+    fontFamily: 'Lato-Black',
     color: '#FFF',
-    marginBottom: 30,
+    marginVertical: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    height: 30,
+  },
+  label: {
+    fontSize: 16,
+    fontFamily: 'Lato-Regular',
+    color: '#FFF',
+    marginRight: 10,
+  },
+  content: {
+    fontFamily: 'Lato-Black',
+    fontSize: 18,
+    color: '#FFF',
   },
 });
