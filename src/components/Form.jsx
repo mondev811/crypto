@@ -60,6 +60,10 @@ export const Form = ({onSubmit}) => {
     },
   ];
 
+  const isReady = () => {
+    return currency !== '' && crypto !== '';
+  };
+
   return (
     <ScrollView>
       <Dropdown
@@ -81,12 +85,17 @@ export const Form = ({onSubmit}) => {
         onSelect={setCrypto}
       />
       <Pressable
+        disabled={isReady() === ''}
         onPress={() =>
           onSubmit(c => {
+            setCurrency('');
+            setCrypto('');
             return cryptocurrencies.find(c => c.name === crypto);
           })
         }>
-        <Text style={styles.btn}>Get Quote</Text>
+        <Text style={[styles.btn, !isReady() && styles.btn_disabled]}>
+          {isReady() ? 'Get Quote' : 'Select currency and cryptocurrency'}
+        </Text>
       </Pressable>
     </ScrollView>
   );
@@ -103,5 +112,10 @@ const styles = StyleSheet.create({
     color: '#FFF',
     marginVertical: 30,
     borderRadius: 10,
+  },
+  btn_disabled: {
+    color: 'grey',
+    fontSize: 14,
+    fontFamily: 'Lato-Regular',
   },
 });

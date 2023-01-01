@@ -9,11 +9,12 @@ const DisplayRow = ({label, content}) => (
 );
 
 export const Quote = props => {
-  const {price, high_day, low_day, variance_last_24h, last_update} =
+  const {full_name, price, high_day, low_day, variance_last_24h, last_update} =
     props.cryptoData;
   return (
     <View style={styles.container}>
       <Text style={styles.priceText}>{price}</Text>
+      <DisplayRow label="Crypto" content={full_name} />
       <DisplayRow label="Highest price of day" content={high_day} />
       <DisplayRow label="Lowest price of the day" content={low_day} />
       <DisplayRow label="Variance last 24 hours" content={variance_last_24h} />
