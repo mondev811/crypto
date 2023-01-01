@@ -4,7 +4,7 @@ import React from 'react';
 export const Header = () => {
   return (
     <View>
-      <Text style={styles.heading}>Crypocurrencies</Text>
+      <Text style={styles.heading}>Cryptocurrencies</Text>
     </View>
   );
 };
